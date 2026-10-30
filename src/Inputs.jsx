@@ -30,7 +30,7 @@ function DateInput() {
 
   return (
     <>
-      <div>
+      <div className="date-input">
         <div className="field">
           <label htmlFor={dateFromId}>Date From </label>
           <input type="date" id={dateFromId} name="dateFrom" />

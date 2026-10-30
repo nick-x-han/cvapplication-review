@@ -7,6 +7,7 @@ function App() {
   return (
     <>
       <section id="center">
+        <button>Publish</button>
         <Section id="general" title="General Information"></Section>
         <EducationSection></EducationSection>
         <WorkSection></WorkSection>

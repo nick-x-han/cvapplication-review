@@ -6,5 +6,15 @@
 
 .checkboxSide {
   position: absolute;
-  right: 400px;
+  left: 250px;
+  display: flex;
+  width: max-content;
+}
+
+.field {
+  
+}
+
+.date-input {
+  position: relative;
 }
