@@ -34,7 +34,7 @@ function DateInput() {
           <input type="checkbox" id={checkboxId} name="untilNow" onChange={onToggle}/>
         </div>
       </div>
-      {untilNow && dateUntilHTML}
+      {!untilNow && dateUntilHTML}
     </>
   );
 }

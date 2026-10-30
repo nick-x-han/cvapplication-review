@@ -1,10 +1,9 @@
 import { useState } from "react";
-import { Section } from "./Section";
+import { Section, FormField } from "./Section";
 import { DateInput } from "./Inputs";
 import "./App.css";
 
 function App() {
-  const [count, setCount] = useState(0);
 
   return (
     <>
@@ -23,6 +22,7 @@ function App() {
           <label htmlFor="title">Title of Study</label>
           <input type="text" id="title" name="title" />
           <DateInput></DateInput>
+          <FormField name="dd" type="text"></FormField>
         </Section>
       </Section>
       <div className="ticks"></div>
