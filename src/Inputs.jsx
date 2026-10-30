@@ -8,8 +8,8 @@ function DateInput() {
   const dateUntilId = useId();
   const checkboxId = useId();
   const dateUntilHTML = (
-    <>
-      <label htmlFor={dateUntilId}>Date Until</label>
+    <div className="field">
+      <label htmlFor={dateUntilId}>Date Until </label>
       <input
         type="date"
         id={dateUntilId}
@@ -17,7 +17,7 @@ function DateInput() {
         value={untilNowDate}
         onChange={onSetUntilNow}
       />
-    </>
+    </div>
   );
 
   function onToggle() {
@@ -30,9 +30,9 @@ function DateInput() {
 
   return (
     <>
-      <div className="horizontal">
-        <div>
-          <label htmlFor={dateFromId}>Date From</label>
+      <div>
+        <div className="field">
+          <label htmlFor={dateFromId}>Date From </label>
           <input type="date" id={dateFromId} name="dateFrom" />
         </div>
         <div className="checkboxSide">
@@ -79,7 +79,7 @@ function FormField({ name, type = "text", isEditing = true }) {
   return (
     <div className="field">
       {isEditing ? (
-        <div>
+        <>
           <label htmlFor={id}>{name} </label>
           <input
             type={type}
@@ -88,7 +88,7 @@ function FormField({ name, type = "text", isEditing = true }) {
             onChange={(e) => setFieldValue(e.target.value)}
             value={fieldValue}
           />
-        </div>
+        </>
       ) : (
         <div>
           {name} {fieldValue}
