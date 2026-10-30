@@ -120,9 +120,10 @@ function EducationForm({ deleteForm, uuid }) {
   const [isEditing, setIsEditing] = useState(true);
   return (
     <form>
-      <FormField name="School Name" type="text"></FormField>
-      <FormField name="Title of Study" type="text"></FormField>
+      <FormField name="School Name" type="text" isEditing={isEditing}></FormField>
+      <FormField name="Title of Study" type="text" isEditing={isEditing}></FormField>
       <DateInput></DateInput>
+      
       <button onClick={() => setIsEditing(!isEditing)} type="button">
         {isEditing ? "Submit" : "Edit"}
       </button>
@@ -138,13 +139,14 @@ function WorkForm({ deleteForm, uuid }) {
 
   return (
     <form>
-      <FormField name="Company Name" type="text"></FormField>
-      <FormField name="Position Title" type="text"></FormField>
+      <FormField name="Company Name" type="text" isEditing={isEditing}></FormField>
+      <FormField name="Position Title" type="text" isEditing={isEditing}></FormField>
       <TextAreaInput
         name="Main Responsibilities"
         isEditing={isEditing}
       ></TextAreaInput>
       <DateInput></DateInput>
+
       <button onClick={() => setIsEditing(!isEditing)} type="button">
         {isEditing ? "Submit" : "Edit"}
       </button>
