@@ -50,18 +50,24 @@ function DateInput() {
   );
 }
 
-function TextAreaInput({ isEditing }) {
+function TextAreaInput({ name, isEditing }) {
   const [text, setText] = useState("");
   const id = useId();
   return (
     <>
       {isEditing ? (
         <>
-          <label htmlFor={id}>Main Responsibilities</label>
-          <textarea id={id} value={text} onChange={e => setText(e.target.value)}></textarea>
+          <label htmlFor={id}>{name}</label>
+          <textarea
+            id={id}
+            value={text}
+            onChange={(e) => setText(e.target.value)}
+          ></textarea>
         </>
       ) : (
-        <p>{text}</p>
+        <p>
+          {name} {text}
+        </p>
       )}
     </>
   );
@@ -110,7 +116,7 @@ function GeneralForm() {
   );
 }
 
-function EducationForm() {
+function EducationForm({ deleteForm, uuid }) {
   const [isEditing, setIsEditing] = useState(true);
   return (
     <form>
@@ -120,26 +126,33 @@ function EducationForm() {
       <button onClick={() => setIsEditing(!isEditing)} type="button">
         {isEditing ? "Submit" : "Edit"}
       </button>
+      <button onClick={() => deleteForm(uuid)} type="button">
+        Delete
+      </button>
     </form>
   );
 }
 
-function WorkForm() {
+function WorkForm({ deleteForm, uuid }) {
   const [isEditing, setIsEditing] = useState(true);
 
   return (
     <form>
       <FormField name="Company Name" type="text"></FormField>
       <FormField name="Position Title" type="text"></FormField>
-      <label>
-        Main Responsibilities<textarea></textarea>
-      </label>
+      <TextAreaInput
+        name="Main Responsibilities"
+        isEditing={isEditing}
+      ></TextAreaInput>
       <DateInput></DateInput>
       <button onClick={() => setIsEditing(!isEditing)} type="button">
         {isEditing ? "Submit" : "Edit"}
+      </button>
+      <button onClick={() => deleteForm(uuid)} type="button">
+        Delete
       </button>
     </form>
   );
 }
 
-export { DateInput, FormField };
+export { DateInput, GeneralForm, EducationForm, WorkForm };
