@@ -10,7 +10,13 @@ function DateInput() {
   const dateUntilHTML = (
     <>
       <label htmlFor={dateUntilId}>Date Until</label>
-      <input type="date" id={dateUntilId} name="dateUntil" value={untilNowDate} onChange={onSetUntilNow} />
+      <input
+        type="date"
+        id={dateUntilId}
+        name="dateUntil"
+        value={untilNowDate}
+        onChange={onSetUntilNow}
+      />
     </>
   );
 
@@ -31,7 +37,12 @@ function DateInput() {
         </div>
         <div className="checkboxSide">
           <label htmlFor={checkboxId}>Until Now?</label>
-          <input type="checkbox" id={checkboxId} name="untilNow" onChange={onToggle}/>
+          <input
+            type="checkbox"
+            id={checkboxId}
+            name="untilNow"
+            onChange={onToggle}
+          />
         </div>
       </div>
       {!untilNow && dateUntilHTML}
@@ -39,19 +50,22 @@ function DateInput() {
   );
 }
 
-function FormSection({ children }) {
-  const [isEditing, setIsEditing] = useState(true);
-  const [fieldsList, setFieldsList] = useState([]);
+function TextAreaInput({ isEditing }) {
+  const [text, setText] = useState("");
+  const id = useId();
   return (
     <>
-      <form>{children}</form>
-      <button onClick={() => setIsEditing(!isEditing)} type="button">
-        {isEditing ? "Submit" : "Edit"}
-      </button>
+      {isEditing ? (
+        <>
+          <label htmlFor={id}>Main Responsibilities</label>
+          <textarea id={id} value={text} onChange={e => setText(e.target.value)}></textarea>
+        </>
+      ) : (
+        <p>{text}</p>
+      )}
     </>
   );
 }
-
 function FormField({ name, type = "text", isEditing = true }) {
   const [fieldValue, setFieldValue] = useState("");
   const id = useId();
@@ -84,7 +98,11 @@ function GeneralForm() {
     <form>
       <FormField name="Name" type="text" isEditing={isEditing}></FormField>
       <FormField name="Email" type="email" isEditing={isEditing}></FormField>
-      <FormField name="Phone Number" type="tel" isEditing={isEditing}></FormField>
+      <FormField
+        name="Phone Number"
+        type="tel"
+        isEditing={isEditing}
+      ></FormField>
       <button onClick={() => setIsEditing(!isEditing)} type="button">
         {isEditing ? "Submit" : "Edit"}
       </button>
@@ -93,6 +111,7 @@ function GeneralForm() {
 }
 
 function EducationForm() {
+  const [isEditing, setIsEditing] = useState(true);
   return (
     <form>
       <FormField name="School Name" type="text"></FormField>
@@ -106,16 +125,21 @@ function EducationForm() {
 }
 
 function WorkForm() {
+  const [isEditing, setIsEditing] = useState(true);
+
   return (
-    <FormSection>
+    <form>
       <FormField name="Company Name" type="text"></FormField>
       <FormField name="Position Title" type="text"></FormField>
       <label>
         Main Responsibilities<textarea></textarea>
       </label>
       <DateInput></DateInput>
-    </FormSection>
+      <button onClick={() => setIsEditing(!isEditing)} type="button">
+        {isEditing ? "Submit" : "Edit"}
+      </button>
+    </form>
   );
 }
 
-export { DateInput, FormSection, FormField };
+export { DateInput, FormField };
