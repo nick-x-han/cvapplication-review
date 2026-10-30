@@ -10,25 +10,19 @@ function App() {
     <>
       <Section id="center">
         <Section id="general" title="General Information">
-          <form>
-            <label htmlFor="name">Name</label>
-            <input type="text" id="name" name="name" />
-            <label htmlFor="email">Email</label>
-            <input type="email" id="email" name="email" />
-            <label htmlFor="phone">Phone Number</label>
-            <input type="tel" id="phone" name="phone" />
-          </form>
+          <label htmlFor="name">Name</label>
+          <input type="text" id="name" name="name" />
+          <label htmlFor="email">Email</label>
+          <input type="email" id="email" name="email" />
+          <label htmlFor="phone">Phone Number</label>
+          <input type="tel" id="phone" name="phone" />
         </Section>
         <Section id="education" title="Educational Experience">
-          <form>
-            <label htmlFor="school">School Name</label>
-            <input type="text" id="school" name="school" />
-            <label htmlFor="title">Title of Study</label>
-            <input type="text" id="title" name="title" />
-            {/* <label htmlFor="startDate">Start Date</label>
-            <input type="date" id="startDate" name="dateOfStudy" /> */}
-            <DateInput></DateInput>
-          </form>
+          <label htmlFor="school">School Name</label>
+          <input type="text" id="school" name="school" />
+          <label htmlFor="title">Title of Study</label>
+          <input type="text" id="title" name="title" />
+          <DateInput></DateInput>
         </Section>
       </Section>
       <div className="ticks"></div>
