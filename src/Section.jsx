@@ -1,44 +1,27 @@
 import "./Section.css";
+import { FormField, FormSection, DateInput } from "./Inputs";
 import { useState, useId } from "react";
 
-function Section({ id, title, children }) {
+function Section({ id, title, addable = true, children }) {
+  const [formsList, setFormsList] = useState([]);
+
   return (
-    <section>
+    <section id={id}>
       <h1>{title}</h1>
-      <form id={id}>{children}</form>
+      <ul>
+        
+        <form>{children}</form>
+      </ul>
+
+      {addable && (
+        <button onClick={() => {return;}} type="button">
+          +
+        </button>
+      )}
     </section>
   );
 }
 
-function FormSection({ children }) {
-  //for separating e.g. diff schools
-}
 
-function FormField({ name, type='text' }) {
-  const [fieldValue, setFieldValue] = useState("");
-  const [editMode, setEditMode] = useState(true);
-  const id = useId();
-
-
-  return (
-    <div className="field">
-      <label htmlFor={id}>{name}</label>
-      {editMode ? (
-        <div>
-          <input
-            type={type}
-            id={id}
-            name={name}
-            onChange={(e) => setFieldValue(e.target.value)}
-            onBlur={() => setEditMode(false)}
-            value={fieldValue}
-          />
-        </div>
-      ) : (
-        <div onClick={() => setEditMode(true)}>{fieldValue}</div>
-      )}
-    </div>
-  );
-}
 
 export { Section, FormField };

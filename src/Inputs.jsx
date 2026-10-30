@@ -39,4 +39,83 @@ function DateInput() {
   );
 }
 
-export { DateInput };
+function FormSection({ children }) {
+  const [isEditing, setIsEditing] = useState(true);
+  const [fieldsList, setFieldsList] = useState([]);
+  return (
+    <>
+      <form>{children}</form>
+      <button onClick={() => setIsEditing(!isEditing)} type="button">
+        {isEditing ? "Submit" : "Edit"}
+      </button>
+    </>
+  );
+}
+
+function FormField({ name, type = "text", isEditing = true }) {
+  const [fieldValue, setFieldValue] = useState("");
+  const id = useId();
+
+  return (
+    <div className="field">
+      {isEditing ? (
+        <div>
+          <label htmlFor={id}>{name} </label>
+          <input
+            type={type}
+            id={id}
+            name={name}
+            onChange={(e) => setFieldValue(e.target.value)}
+            value={fieldValue}
+          />
+        </div>
+      ) : (
+        <div>
+          {name} {fieldValue}
+        </div>
+      )}
+    </div>
+  );
+}
+
+function GeneralForm() {
+  const [isEditing, setIsEditing] = useState(true);
+  return (
+    <form>
+      <FormField name="Name" type="text" isEditing={isEditing}></FormField>
+      <FormField name="Email" type="email" isEditing={isEditing}></FormField>
+      <FormField name="Phone Number" type="tel" isEditing={isEditing}></FormField>
+      <button onClick={() => setIsEditing(!isEditing)} type="button">
+        {isEditing ? "Submit" : "Edit"}
+      </button>
+    </form>
+  );
+}
+
+function EducationForm() {
+  return (
+    <form>
+      <FormField name="School Name" type="text"></FormField>
+      <FormField name="Title of Study" type="text"></FormField>
+      <DateInput></DateInput>
+      <button onClick={() => setIsEditing(!isEditing)} type="button">
+        {isEditing ? "Submit" : "Edit"}
+      </button>
+    </form>
+  );
+}
+
+function WorkForm() {
+  return (
+    <FormSection>
+      <FormField name="Company Name" type="text"></FormField>
+      <FormField name="Position Title" type="text"></FormField>
+      <label>
+        Main Responsibilities<textarea></textarea>
+      </label>
+      <DateInput></DateInput>
+    </FormSection>
+  );
+}
+
+export { DateInput, FormSection, FormField };

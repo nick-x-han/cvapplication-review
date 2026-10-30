@@ -1,14 +1,15 @@
 import { useState } from "react";
-import { Section, FormField } from "./Section";
-import { DateInput } from "./Inputs";
+import { Section } from "./Section";
+import { DateInput, FormField } from "./Inputs";
 import "./App.css";
 
 function App() {
 
   return (
     <>
-      <Section id="center">
+      <section id="center">
         <Section id="general" title="General Information">
+          <FormField name="Name" type="text"></FormField>
           <label htmlFor="name">Name</label>
           <input type="text" id="name" name="name" />
           <label htmlFor="email">Email</label>
@@ -24,7 +25,7 @@ function App() {
           <DateInput></DateInput>
           <FormField name="dd" type="text"></FormField>
         </Section>
-      </Section>
+      </section>
       <div className="ticks"></div>
       <section id="spacer"></section>
     </>
