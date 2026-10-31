@@ -19,11 +19,13 @@ function validateForm(form) {
 }
 
 function DateInput({ isEditing }) {
-  const [untilNow, setUntilNow] = useState(false);
+  const [isUntilNow, setIsUntilNow] = useState(false);
+  const [fromDate, setFromDate] = useState("");
   const [untilNowDate, setUntilNowDate] = useState("");
   const dateFromId = useId();
   const dateUntilId = useId();
   const checkboxId = useId();
+  const today = new Date().toLocaleDateString("en-CA");
   const dateUntilHTML = (
     <div className="field">
       <label htmlFor={dateUntilId}>Date Until </label>
@@ -32,18 +34,24 @@ function DateInput({ isEditing }) {
         id={dateUntilId}
         name="dateUntil"
         value={untilNowDate}
-        onChange={onSetUntilNow}
+        onChange={onSetUntilNowDate}
+        min={fromDate}
+        max={today}
         required
       />
     </div>
   );
 
-  function onToggle() {
-    setUntilNow(!untilNow);
+  function onToggleUntilNow() {
+    setIsUntilNow(!isUntilNow);
   }
 
-  function onSetUntilNow(e) {
+  function onSetUntilNowDate(e) {
     setUntilNowDate(e.target.value);
+  }
+
+  function onSetFromDate(e) {
+    setFromDate(e.target.value);
   }
 
   return (
@@ -51,7 +59,14 @@ function DateInput({ isEditing }) {
       <div className="date-input">
         <div className="field">
           <label htmlFor={dateFromId}>Date From </label>
-          <input type="date" id={dateFromId} name="dateFrom" required />
+          <input
+            type="date"
+            id={dateFromId}
+            name="dateFrom"
+            value={fromDate}
+            onChange={onSetFromDate}
+            required
+          />
         </div>
         <div className="checkboxSide">
           <label htmlFor={checkboxId}>Until Now?</label>
@@ -59,11 +74,11 @@ function DateInput({ isEditing }) {
             type="checkbox"
             id={checkboxId}
             name="untilNow"
-            onChange={onToggle}
+            onChange={onToggleUntilNow}
           />
         </div>
       </div>
-      {!untilNow && dateUntilHTML}
+      {!isUntilNow && dateUntilHTML}
     </>
   );
 }
@@ -173,7 +188,7 @@ function EducationForm({ deleteForm, uuid }) {
         type="text"
         isEditing={isEditing}
       ></FormField>
-      <DateInput></DateInput>
+      <DateInput isEditing={isEditing}></DateInput>
 
       <button type="submit">{isEditing ? "Submit" : "Edit"}</button>
       <button onClick={() => deleteForm(uuid)} type="button">
@@ -215,7 +230,7 @@ function WorkForm({ deleteForm, uuid }) {
         name="Main Responsibilities"
         isEditing={isEditing}
       ></TextAreaInput>
-      <DateInput></DateInput>
+      <DateInput isEditing={isEditing}></DateInput>
 
       <button type="submit">{isEditing ? "Submit" : "Edit"}</button>
       <button onClick={() => deleteForm(uuid)} type="button">
