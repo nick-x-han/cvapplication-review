@@ -3,6 +3,11 @@ import { GeneralSection, EducationSection, WorkSection } from "./Section";
 import "./App.css";
 
 function App() {
+  const [formStatusList, setFormStatusList] = useState([]);
+
+  function changeStatus(formId) {
+    
+  }
 
   return (
     <>
