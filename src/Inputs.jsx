@@ -21,11 +21,11 @@ function validateForm(form) {
 function DateInput({ isEditing }) {
   const [isUntilNow, setIsUntilNow] = useState(false);
   const [fromDate, setFromDate] = useState("");
-  const [untilNowDate, setUntilNowDate] = useState("");
+  const [untilDate, setUntilDate] = useState("");
   const dateFromId = useId();
   const dateUntilId = useId();
   const checkboxId = useId();
-  const today = new Date().toLocaleDateString("en-CA");
+  const now = new Date().toLocaleDateString("en-CA");
   const dateUntilHTML = (
     <div className="field">
       <label htmlFor={dateUntilId}>Date Until </label>
@@ -33,10 +33,10 @@ function DateInput({ isEditing }) {
         type="date"
         id={dateUntilId}
         name="dateUntil"
-        value={untilNowDate}
+        value={untilDate}
         onChange={onSetUntilNowDate}
         min={fromDate}
-        max={today}
+        max={now}
         required
       />
     </div>
@@ -47,40 +47,52 @@ function DateInput({ isEditing }) {
   }
 
   function onSetUntilNowDate(e) {
-    setUntilNowDate(e.target.value);
+    setUntilDate(e.target.value);
   }
 
   function onSetFromDate(e) {
     setFromDate(e.target.value);
   }
 
-  return (
-    <>
-      <div className="date-input">
-        <div className="field">
-          <label htmlFor={dateFromId}>Date From </label>
-          <input
-            type="date"
-            id={dateFromId}
-            name="dateFrom"
-            value={fromDate}
-            onChange={onSetFromDate}
-            required
-          />
+  if (isEditing) {
+    return (
+      <>
+        <div className="date-input">
+          <div className="field">
+            <label htmlFor={dateFromId}>Date From </label>
+            <input
+              type="date"
+              id={dateFromId}
+              name="dateFrom"
+              value={fromDate}
+              onChange={onSetFromDate}
+              max={now}
+              required
+            />
+          </div>
+          <div className="checkboxSide">
+            <label htmlFor={checkboxId}>Until Now?</label>
+            <input
+              type="checkbox"
+              id={checkboxId}
+              name="untilNow"
+              onChange={onToggleUntilNow}
+              checked={isUntilNow}
+            />
+          </div>
         </div>
-        <div className="checkboxSide">
-          <label htmlFor={checkboxId}>Until Now?</label>
-          <input
-            type="checkbox"
-            id={checkboxId}
-            name="untilNow"
-            onChange={onToggleUntilNow}
-          />
-        </div>
-      </div>
-      {!isUntilNow && dateUntilHTML}
-    </>
-  );
+        {!isUntilNow && dateUntilHTML}
+      </>
+    );
+  }
+  else {
+    return (
+      <>
+      <p>Date From: {fromDate}</p>
+      <p>Date Until: {isUntilNow ? "Present" : untilDate }</p>
+      </>
+    )
+  }
 }
 
 function TextAreaInput({ name, isEditing }) {
