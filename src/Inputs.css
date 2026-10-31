@@ -12,7 +12,21 @@
 }
 
 .field {
-  
+  &:required {
+    border-color: red;
+  }
+}
+
+.field-value {
+  color: green;
+  &:empty {
+    &::after {
+      content: "FILL IN";
+      color: white;
+      font-weight: bold;
+      font-style: italic;
+    }
+  }
 }
 
 .date-input {

@@ -1,9 +1,26 @@
 import { useState, useId } from "react";
 import "./Inputs.css";
 
-function DateInput() {
+function validateForm(form) {
+  const inputs = form.querySelectorAll("input, textarea, select");
+  inputs.forEach((i) => i.setCustomValidity(""));
+  if (form.checkValidity()) {
+    return true;
+  }
+  const invalidInputs = form.querySelectorAll(
+    ":is(input, textarea, select):invalid",
+  );
+  invalidInputs.forEach((i) => {
+    if (i.validity.valueMissing)
+      i.setCustomValidity("Please fill in all fields before submitting.");
+  });
+  form.reportValidity();
+  return false;
+}
+
+function DateInput({ isEditing }) {
   const [untilNow, setUntilNow] = useState(false);
-  const [untilNowDate, setUntilNowDate] = useState();
+  const [untilNowDate, setUntilNowDate] = useState("");
   const dateFromId = useId();
   const dateUntilId = useId();
   const checkboxId = useId();
@@ -16,6 +33,7 @@ function DateInput() {
         name="dateUntil"
         value={untilNowDate}
         onChange={onSetUntilNow}
+        required
       />
     </div>
   );
@@ -33,7 +51,7 @@ function DateInput() {
       <div className="date-input">
         <div className="field">
           <label htmlFor={dateFromId}>Date From </label>
-          <input type="date" id={dateFromId} name="dateFrom" />
+          <input type="date" id={dateFromId} name="dateFrom" required />
         </div>
         <div className="checkboxSide">
           <label htmlFor={checkboxId}>Until Now?</label>
@@ -87,11 +105,12 @@ function FormField({ name, type = "text", isEditing = true }) {
             name={name}
             onChange={(e) => setFieldValue(e.target.value)}
             value={fieldValue}
+            required
           />
         </>
       ) : (
         <div>
-          {name} {fieldValue}
+          {name}: <span className="field-value">{fieldValue}</span>
         </div>
       )}
     </div>
@@ -101,7 +120,20 @@ function FormField({ name, type = "text", isEditing = true }) {
 function GeneralForm() {
   const [isEditing, setIsEditing] = useState(true);
   return (
-    <form>
+    <form
+      noValidate
+      onSubmit={(e) => {
+        e.preventDefault();
+        if (isEditing) {
+          const form = e.currentTarget;
+          const formStatus = validateForm(form);
+          if (!formStatus) {
+            return;
+          }
+        }
+        setIsEditing(!isEditing);
+      }}
+    >
       <FormField name="Name" type="text" isEditing={isEditing}></FormField>
       <FormField name="Email" type="email" isEditing={isEditing}></FormField>
       <FormField
@@ -109,9 +141,7 @@ function GeneralForm() {
         type="tel"
         isEditing={isEditing}
       ></FormField>
-      <button onClick={() => setIsEditing(!isEditing)} type="button">
-        {isEditing ? "Submit" : "Edit"}
-      </button>
+      <button type="submit">{isEditing ? "Submit" : "Edit"}</button>
     </form>
   );
 }
@@ -119,14 +149,33 @@ function GeneralForm() {
 function EducationForm({ deleteForm, uuid }) {
   const [isEditing, setIsEditing] = useState(true);
   return (
-    <form>
-      <FormField name="School Name" type="text" isEditing={isEditing}></FormField>
-      <FormField name="Title of Study" type="text" isEditing={isEditing}></FormField>
+    <form
+      noValidate
+      onSubmit={(e) => {
+        e.preventDefault();
+        if (isEditing) {
+          const form = e.currentTarget;
+          const formStatus = validateForm(form);
+          if (!formStatus) {
+            return;
+          }
+        }
+        setIsEditing(!isEditing);
+      }}
+    >
+      <FormField
+        name="School Name"
+        type="text"
+        isEditing={isEditing}
+      ></FormField>
+      <FormField
+        name="Title of Study"
+        type="text"
+        isEditing={isEditing}
+      ></FormField>
       <DateInput></DateInput>
-      
-      <button onClick={() => setIsEditing(!isEditing)} type="button">
-        {isEditing ? "Submit" : "Edit"}
-      </button>
+
+      <button type="submit">{isEditing ? "Submit" : "Edit"}</button>
       <button onClick={() => deleteForm(uuid)} type="button">
         Delete
       </button>
@@ -138,18 +187,37 @@ function WorkForm({ deleteForm, uuid }) {
   const [isEditing, setIsEditing] = useState(true);
 
   return (
-    <form>
-      <FormField name="Company Name" type="text" isEditing={isEditing}></FormField>
-      <FormField name="Position Title" type="text" isEditing={isEditing}></FormField>
+    <form
+      noValidate
+      onSubmit={(e) => {
+        e.preventDefault();
+        if (isEditing) {
+          const form = e.currentTarget;
+          const formStatus = validateForm(form);
+          if (!formStatus) {
+            return;
+          }
+        }
+        setIsEditing(!isEditing);
+      }}
+    >
+      <FormField
+        name="Company Name"
+        type="text"
+        isEditing={isEditing}
+      ></FormField>
+      <FormField
+        name="Position Title"
+        type="text"
+        isEditing={isEditing}
+      ></FormField>
       <TextAreaInput
         name="Main Responsibilities"
         isEditing={isEditing}
       ></TextAreaInput>
       <DateInput></DateInput>
 
-      <button onClick={() => setIsEditing(!isEditing)} type="button">
-        {isEditing ? "Submit" : "Edit"}
-      </button>
+      <button type="submit">{isEditing ? "Submit" : "Edit"}</button>
       <button onClick={() => deleteForm(uuid)} type="button">
         Delete
       </button>

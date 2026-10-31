@@ -2,10 +2,10 @@ import "./Section.css";
 import { GeneralForm, WorkForm, EducationForm } from "./Inputs";
 import { useState, useId } from "react";
 
-function Section({ id, title, children }) {
+function GeneralSection() {
   return (
-    <section id={id}>
-      <h1>{title}</h1>
+    <section id={"general"}>
+      <h1>{"General Information"}</h1>
       <GeneralForm></GeneralForm>
     </section>
   );
@@ -65,4 +65,4 @@ function WorkSection() {
   );
 }
 
-export { Section, EducationSection, WorkSection };
+export { GeneralSection, EducationSection, WorkSection };

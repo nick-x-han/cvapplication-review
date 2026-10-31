@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Section, EducationSection, WorkSection } from "./Section";
+import { GeneralSection, EducationSection, WorkSection } from "./Section";
 import "./App.css";
 
 function App() {
@@ -8,7 +8,7 @@ function App() {
     <>
       <section id="center">
         <button>Publish</button>
-        <Section id="general" title="General Information"></Section>
+        <GeneralSection></GeneralSection>
         <EducationSection></EducationSection>
         <WorkSection></WorkSection>
       </section>
