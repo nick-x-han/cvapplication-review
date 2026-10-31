@@ -1,6 +1,6 @@
 import "./Section.css";
 import { GeneralForm, WorkForm, EducationForm } from "./Forms";
-import { useState, useId } from "react";
+import { useState } from "react";
 
 function GeneralSection() {
   return (
