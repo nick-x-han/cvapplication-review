@@ -19,8 +19,9 @@ function validateForm(form) {
   return false;
 }
 
-function GeneralForm() {
+function GeneralForm({ onSubmit, uuid }) {
   const [isEditing, setIsEditing] = useState(true);
+
   return (
     <form
       noValidate
@@ -32,6 +33,9 @@ function GeneralForm() {
           if (!formStatus) {
             return;
           }
+          let data = new FormData(form);
+          data = Object.fromEntries(data);
+          onSubmit("general", [uuid, data]);
         }
         setIsEditing(!isEditing);
       }}
@@ -43,12 +47,14 @@ function GeneralForm() {
         type="tel"
         isEditing={isEditing}
       ></FormField>
-      <button type="submit" className="submit-button">{isEditing ? "Submit" : "Edit"}</button>
+      <button type="submit" className="submit-button">
+        {isEditing ? "Submit" : "Edit"}
+      </button>
     </form>
   );
 }
 
-function EducationForm({ deleteForm, uuid }) {
+function EducationForm({ deleteForm, uuid, onSubmit }) {
   const [isEditing, setIsEditing] = useState(true);
   return (
     <form
@@ -61,6 +67,9 @@ function EducationForm({ deleteForm, uuid }) {
           if (!formStatus) {
             return;
           }
+          let data = new FormData(form);
+          data = Object.fromEntries(data);
+          onSubmit("education", [uuid, data]);
         }
         setIsEditing(!isEditing);
       }}
@@ -78,7 +87,9 @@ function EducationForm({ deleteForm, uuid }) {
       <DateInput isEditing={isEditing}></DateInput>
 
       <div className="horizontal">
-        <button type="submit" className="submit-button">{isEditing ? "Submit" : "Edit"}</button>
+        <button type="submit" className="submit-button">
+          {isEditing ? "Submit" : "Edit"}
+        </button>
         <button
           onClick={() => deleteForm(uuid)}
           type="button"
@@ -91,7 +102,7 @@ function EducationForm({ deleteForm, uuid }) {
   );
 }
 
-function WorkForm({ deleteForm, uuid }) {
+function WorkForm({ deleteForm, uuid, onSubmit }) {
   const [isEditing, setIsEditing] = useState(true);
 
   return (
@@ -105,6 +116,9 @@ function WorkForm({ deleteForm, uuid }) {
           if (!formStatus) {
             return;
           }
+          let data = new FormData(form);
+          data = Object.fromEntries(data);
+          onSubmit("work", [uuid, data]);
         }
         setIsEditing(!isEditing);
       }}
@@ -126,7 +140,9 @@ function WorkForm({ deleteForm, uuid }) {
       <DateInput isEditing={isEditing}></DateInput>
 
       <div className="horizontal">
-        <button type="submit" className="submit-button">{isEditing ? "Submit" : "Edit"}</button>
+        <button type="submit" className="submit-button">
+          {isEditing ? "Submit" : "Edit"}
+        </button>
         <button
           onClick={() => deleteForm(uuid)}
           type="button"

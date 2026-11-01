@@ -1,17 +1,18 @@
 import "./Section.css";
 import { GeneralForm, WorkForm, EducationForm } from "./Forms";
-import { useState } from "react";
+import { useState, Fragment } from "react";
 
-function GeneralSection() {
+function GeneralSection({ onSubmit }) {
+  const [formId] = useState(() => crypto.randomUUID());
   return (
     <section id={"general"} className="section">
       <h1>{"General Information"}</h1>
-      <GeneralForm></GeneralForm>
+      <GeneralForm onSubmit={onSubmit} uuid={formId}></GeneralForm>
     </section>
   );
 }
 
-function EducationSection() {
+function EducationSection({ onSubmit }) {
   const [formsList, setFormsList] = useState([crypto.randomUUID()]);
 
   function addForm() {
@@ -29,14 +30,14 @@ function EducationSection() {
       <ul>
         {formsList.map((id, index) => {
           return (
-            <>
+            <Fragment key={id}>
               {index > 0 && <hr></hr>}
               <EducationForm
-                key={id}
                 deleteForm={deleteForm}
                 uuid={id}
+                onSubmit={onSubmit}
               ></EducationForm>
-            </>
+            </Fragment>
           );
         })}
       </ul>
@@ -51,7 +52,7 @@ function EducationSection() {
   );
 }
 
-function WorkSection() {
+function WorkSection({ onSubmit }) {
   const [formsList, setFormsList] = useState([crypto.randomUUID()]);
 
   function addForm() {
@@ -67,9 +68,16 @@ function WorkSection() {
     <section id="work" className="section">
       <h1>{"Work Experience"}</h1>
       <ul>
-        {formsList.map((id) => {
+        {formsList.map((id, index) => {
           return (
-            <WorkForm key={id} deleteForm={deleteForm} uuid={id}></WorkForm>
+            <Fragment key={id}>
+              {index > 0 && <hr></hr>}
+              <WorkForm
+                deleteForm={deleteForm}
+                uuid={id}
+                onSubmit={onSubmit}
+              ></WorkForm>
+            </Fragment>
           );
         })}
       </ul>
