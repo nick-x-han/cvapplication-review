@@ -17,10 +17,21 @@ function App() {
     }));
   }
 
+  function deleteData(sectionType, id) {
+    setData((prev) => {
+      const removedData = { ...prev[sectionType] };
+      delete removedData[id];
+      return {
+        ...prev,
+        [sectionType]: removedData,
+      };
+    });
+  }
+
   function validateForms() {
     let forms = document.querySelectorAll("form[data-editing]");
-     forms = Array.from(forms);
-    return !forms.some((form) => (form.dataset["editing"] === "true"));
+    forms = Array.from(forms);
+    return !forms.some((form) => form.dataset["editing"] === "true");
   }
 
   function onPublish() {
@@ -43,8 +54,11 @@ function App() {
       <section id="center">
         <button onClick={onPublish}>Publish</button>
         <GeneralSection onSubmit={editData}></GeneralSection>
-        <EducationSection onSubmit={editData}></EducationSection>
-        <WorkSection onSubmit={editData}></WorkSection>
+        <EducationSection
+          onSubmit={editData}
+          onDelete={deleteData}
+        ></EducationSection>
+        <WorkSection onSubmit={editData} onDelete={deleteData}></WorkSection>
       </section>
       <section id="spacer"></section>
     </>

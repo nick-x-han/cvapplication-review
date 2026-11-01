@@ -12,7 +12,7 @@ function GeneralSection({ onSubmit }) {
   );
 }
 
-function EducationSection({ onSubmit }) {
+function EducationSection({ onSubmit, onDelete }) {
   const [formsList, setFormsList] = useState(() => [crypto.randomUUID()]);
 
   function addForm() {
@@ -22,6 +22,7 @@ function EducationSection({ onSubmit }) {
 
   function deleteForm(id) {
     setFormsList(formsList.filter((i) => id !== i));
+    onDelete("education", id);
   }
 
   return (
@@ -52,7 +53,7 @@ function EducationSection({ onSubmit }) {
   );
 }
 
-function WorkSection({ onSubmit }) {
+function WorkSection({ onSubmit, onDelete }) {
   const [formsList, setFormsList] = useState(() => [crypto.randomUUID()]);
 
   function addForm() {
@@ -62,6 +63,7 @@ function WorkSection({ onSubmit }) {
 
   function deleteForm(id) {
     setFormsList(formsList.filter((i) => id !== i));
+    onDelete("work", id);
   }
 
   return (
