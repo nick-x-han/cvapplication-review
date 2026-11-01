@@ -77,14 +77,16 @@ function EducationForm({ deleteForm, uuid }) {
       ></FormField>
       <DateInput isEditing={isEditing}></DateInput>
 
-      <button type="submit" className="submit-button">{isEditing ? "Submit" : "Edit"}</button>
-      <button
-        onClick={() => deleteForm(uuid)}
-        type="button"
-        className="delete-button"
-      >
-        Delete
-      </button>
+      <div className="horizontal">
+        <button type="submit" className="submit-button">{isEditing ? "Submit" : "Edit"}</button>
+        <button
+          onClick={() => deleteForm(uuid)}
+          type="button"
+          className="delete-button"
+        >
+          Delete
+        </button>
+      </div>
     </form>
   );
 }
@@ -123,14 +125,16 @@ function WorkForm({ deleteForm, uuid }) {
       ></TextAreaInput>
       <DateInput isEditing={isEditing}></DateInput>
 
-      <button type="submit" className="submit-button">{isEditing ? "Submit" : "Edit"}</button>
-      <button
-        onClick={() => deleteForm(uuid)}
-        type="button"
-        className="delete-button"
-      >
-        Delete
-      </button>
+      <div className="horizontal">
+        <button type="submit" className="submit-button">{isEditing ? "Submit" : "Edit"}</button>
+        <button
+          onClick={() => deleteForm(uuid)}
+          type="button"
+          className="delete-button"
+        >
+          Delete
+        </button>
+      </div>
     </form>
   );
 }
