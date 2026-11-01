@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { FormField, TextAreaInput, DateInput } from "./Inputs";
-import "./Forms.css";
+import "../styles/Forms.css";
 
 function validateForm(form) {
   const inputs = form.querySelectorAll("input, textarea, select");

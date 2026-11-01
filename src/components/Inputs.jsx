@@ -1,5 +1,5 @@
 import { useState, useId } from "react";
-import "./Inputs.css";
+import "../styles/Inputs.css";
 
 function DateInput({ isEditing }) {
   const [isUntilNow, setIsUntilNow] = useState(false);

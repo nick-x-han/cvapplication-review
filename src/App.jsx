@@ -1,6 +1,6 @@
 import { useState, useRef } from "react";
-import { GeneralSection, EducationSection, WorkSection } from "./Section";
-import "./App.css";
+import { GeneralSection, EducationSection, WorkSection } from "./components/Section";
+import "./styles/App.css";
 
 function App() {
   const [data, setData] = useState({});

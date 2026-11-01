@@ -1,4 +1,4 @@
-import "./Section.css";
+import "../styles/Section.css";
 import { GeneralForm, WorkForm, EducationForm } from "./Forms";
 import { useState, Fragment } from "react";
 
