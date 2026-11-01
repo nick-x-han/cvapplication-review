@@ -1,9 +1,10 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { GeneralSection, EducationSection, WorkSection } from "./Section";
 import "./App.css";
 
 function App() {
   const [data, setData] = useState({});
+  const timeoutRef = useRef(null);
 
   function editData(sectionType, idValue) {
     const formId = idValue[0];
@@ -43,7 +44,8 @@ function App() {
       popover.textContent = "All forms must be submitted";
     }
     popover.showPopover();
-    setTimeout(() => popover.hidePopover(), 3000);
+    clearTimeout(timeoutRef.current);
+    timeoutRef.current = setTimeout(() => popover.hidePopover(), 3000);
   }
 
   return (

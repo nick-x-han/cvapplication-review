@@ -47,6 +47,7 @@ button, .notification {
   right: 20px;
   margin: 0;
   border-color: var(--accent-border);
+  background-color: purple;
 }
 
 .notification:popover-open {
