@@ -70,11 +70,11 @@ function DateInput({ isEditing }) {
       <>
         <div className="field">
           <span>Date From:</span>
-          <span>{fromDate}</span>
+          <span className="field-value">{fromDate}</span>
         </div>
         <div className="field">
           <span>Date Until:</span>
-          <span>{isUntilNow ? "Present" : untilDate}</span>
+          <span className="field-value">{isUntilNow ? "Present" : untilDate}</span>
         </div>
       </>
     );
@@ -98,7 +98,7 @@ function TextAreaInput({ name, isEditing }) {
         </>
       ) : (
         <>
-          <span>{name}:</span> <span>{text}</span>
+          <span>{name}:</span> <span className="field-value">{text}</span>
         </>
       )}
     </div>
