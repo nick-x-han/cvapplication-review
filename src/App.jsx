@@ -3,21 +3,33 @@ import { GeneralSection, EducationSection, WorkSection } from "./Section";
 import "./App.css";
 
 function App() {
-  const [formStatusList, setFormStatusList] = useState([]);
   const [data, setData] = useState({});
 
-  function changeStatus(formId) {
-    
+  function editData(sectionType, idValue) {
+    const formId = idValue[0];
+    const formData = idValue[1];
+    setData((prev) => ({
+      ...prev,
+      [sectionType]: {
+        ...prev[sectionType],
+        [formId]: formData,
+      },
+    }));
   }
 
-  function editData(id, value) {
-
+  function onPublish() {
+    () => console.log(data);
+    let popover = document.querySelector("#mypopover");
+    popover.togglePopover();
   }
 
   return (
     <>
+      <div id="mypopover" className="notification" popover>
+        Popover content
+      </div>
       <section id="center">
-        <button>Publish</button>
+        <button onClick={onPublish}>Publish</button>
         <GeneralSection onSubmit={editData}></GeneralSection>
         <EducationSection onSubmit={editData}></EducationSection>
         <WorkSection onSubmit={editData}></WorkSection>
