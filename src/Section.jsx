@@ -6,7 +6,7 @@ function GeneralSection({ onSubmit }) {
   const [formId] = useState(() => crypto.randomUUID());
   return (
     <section id={"general"} className="section">
-      <h1>{"General Information"}</h1>
+      <h2>{"General Information"}</h2>
       <GeneralForm onSubmit={onSubmit} uuid={formId}></GeneralForm>
     </section>
   );
@@ -27,7 +27,7 @@ function EducationSection({ onSubmit, onDelete }) {
 
   return (
     <section id="education" className="section">
-      <h1>{"Educational Experience"}</h1>
+      <h2>{"Educational Experience"}</h2>
       <ul>
         {formsList.map((id, index) => {
           return (
@@ -68,7 +68,7 @@ function WorkSection({ onSubmit, onDelete }) {
 
   return (
     <section id="work" className="section">
-      <h1>{"Work Experience"}</h1>
+      <h2>{"Work Experience"}</h2>
       <ul>
         {formsList.map((id, index) => {
           return (

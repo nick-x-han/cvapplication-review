@@ -48,6 +48,7 @@ function App() {
 
   return (
     <>
+      <h1>CV Application Creator</h1>
       <div id="mypopover" className="notification" popover="auto">
         Data logged
       </div>
