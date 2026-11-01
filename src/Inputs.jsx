@@ -26,7 +26,7 @@ function DateInput({ isEditing }) {
     return (
       <>
         <div className="field">
-          <label htmlFor={dateFromId}>Date From </label>
+          <label htmlFor={dateFromId}>Date From: </label>
           <input
             type="date"
             id={dateFromId}
@@ -39,7 +39,7 @@ function DateInput({ isEditing }) {
         </div>
 
         <div className="field">
-          <label htmlFor={dateUntilId}>Date Until </label>
+          <label htmlFor={dateUntilId}>Date Until: </label>
           <input
             type="date"
             id={dateUntilId}
@@ -48,7 +48,7 @@ function DateInput({ isEditing }) {
             onChange={onSetUntilNowDate}
             min={fromDate}
             max={now}
-            disabled={isUntilNow ? true : false}
+            disabled={isUntilNow}
             required
           />
         </div>
@@ -68,8 +68,14 @@ function DateInput({ isEditing }) {
   } else {
     return (
       <>
-        <p>Date From: {fromDate}</p>
-        <p>Date Until: {isUntilNow}</p>
+        <div className="field">
+          <span>Date From:</span>
+          <span>{fromDate}</span>
+        </div>
+        <div className="field">
+          <span>Date Until:</span>
+          <span>{isUntilNow ? "Present" : untilDate}</span>
+        </div>
       </>
     );
   }
@@ -79,23 +85,23 @@ function TextAreaInput({ name, isEditing }) {
   const [text, setText] = useState("");
   const id = useId();
   return (
-    <>
+    <div className="field">
       {isEditing ? (
-        <div className="field">
-          <label htmlFor={id}>{name}</label>
+        <>
+          <label htmlFor={id}>{name}:</label>
           <textarea
             id={id}
             value={text}
             onChange={(e) => setText(e.target.value)}
             required
           ></textarea>
-        </div>
+        </>
       ) : (
-        <p>
-          {name} {text}
-        </p>
+        <>
+          <span>{name}:</span> <span>{text}</span>
+        </>
       )}
-    </>
+    </div>
   );
 }
 function FormField({ name, type = "text", isEditing = true }) {
@@ -106,7 +112,7 @@ function FormField({ name, type = "text", isEditing = true }) {
     <div className="field">
       {isEditing ? (
         <>
-          <label htmlFor={id}>{name} </label>
+          <label htmlFor={id}>{name}: </label>
           <input
             type={type}
             id={id}
@@ -117,9 +123,9 @@ function FormField({ name, type = "text", isEditing = true }) {
           />
         </>
       ) : (
-        <div>
-          {name}: <span className="field-value">{fieldValue}</span>
-        </div>
+        <>
+          <span>{name}:</span> <span className="field-value">{fieldValue}</span>
+        </>
       )}
     </div>
   );

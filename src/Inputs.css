@@ -10,8 +10,11 @@
   align-items: center;
   gap: 10px;
 
-  & > label {
+  & > label, & > span:first-child {
     text-align: right;
+  }
+  & > span:nth-child(2) {
+    text-align: left;
   }
 }
 
