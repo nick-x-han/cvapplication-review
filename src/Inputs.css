@@ -37,3 +37,8 @@
     }
   }
 }
+
+.form-textarea {
+  resize: vertical;
+  overflow: auto;
+}

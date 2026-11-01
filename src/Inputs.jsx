@@ -90,6 +90,7 @@ function TextAreaInput({ name, isEditing }) {
         <>
           <label htmlFor={id}>{name}:</label>
           <textarea
+            className="form-textarea"
             id={id}
             value={text}
             onChange={(e) => setText(e.target.value)}
