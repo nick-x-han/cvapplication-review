@@ -1,4 +1,4 @@
-button {
+button, .notification {
   font-size: 16px;
   padding: 5px 10px;
   border-radius: 5px;
@@ -38,4 +38,30 @@ button {
   }
 }
 
+
+
+.notification {
+  position: fixed;
+  inset: auto;
+  top: 20px;
+  right: 20px;
+  margin: 0;
+  border-color: var(--accent-border);
+}
+
+.notification:popover-open {
+  animation: slideDown 0.4s ease-out;
+}
+
+@keyframes slideDown {
+  from {
+    transform: translateY(-100px);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
 

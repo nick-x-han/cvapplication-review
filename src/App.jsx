@@ -18,15 +18,16 @@ function App() {
   }
 
   function onPublish() {
-    () => console.log(data);
+    console.log(data);
     let popover = document.querySelector("#mypopover");
     popover.togglePopover();
+    setTimeout(() => popover.togglePopover(), 3000);
   }
 
   return (
     <>
-      <div id="mypopover" className="notification" popover>
-        Popover content
+      <div id="mypopover" className="notification" popover="auto">
+        Data logged
       </div>
       <section id="center">
         <button onClick={onPublish}>Publish</button>
