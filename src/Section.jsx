@@ -4,7 +4,7 @@ import { useState } from "react";
 
 function GeneralSection() {
   return (
-    <section id={"general"}>
+    <section id={"general"} className="section">
       <h1>{"General Information"}</h1>
       <GeneralForm></GeneralForm>
     </section>
@@ -24,7 +24,7 @@ function EducationSection() {
   }
 
   return (
-    <section id="education">
+    <section id="education" className="section">
       <h1>{"Educational Experience"}</h1>
       <ul>
         {formsList.map((id) => {
@@ -51,7 +51,7 @@ function WorkSection() {
   }
 
   return (
-    <section id="work">
+    <section id="work" className="section">
       <h1>{"Work Experience"}</h1>
       <ul>
         {formsList.map((id) => {

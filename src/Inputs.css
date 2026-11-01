@@ -6,14 +6,19 @@
 
 .checkboxSide {
   position: absolute;
-  left: 250px;
+  right: 0px;
   display: flex;
   width: max-content;
 }
 
 .field {
-  &:required {
-    border-color: red;
+  display: grid;
+  grid-template-columns: 200px 300px;
+  align-items: center;
+  gap: 10px;
+
+  & > label {
+    text-align: right;
   }
 }
 

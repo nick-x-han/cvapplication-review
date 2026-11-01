@@ -84,7 +84,7 @@ function TextAreaInput({ name, isEditing }) {
   return (
     <>
       {isEditing ? (
-        <>
+        <div className="field">
           <label htmlFor={id}>{name}</label>
           <textarea
             id={id}
@@ -92,7 +92,7 @@ function TextAreaInput({ name, isEditing }) {
             onChange={(e) => setText(e.target.value)}
             required
           ></textarea>
-        </>
+        </div>
       ) : (
         <p>
           {name} {text}
