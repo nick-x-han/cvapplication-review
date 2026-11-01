@@ -20,18 +20,31 @@ function EducationSection() {
   }
 
   function deleteForm(id) {
-    setFormsList(formsList.filter(i => id !== i));
+    setFormsList(formsList.filter((i) => id !== i));
   }
 
   return (
     <section id="education" className="section">
       <h1>{"Educational Experience"}</h1>
       <ul>
-        {formsList.map((id) => {
-          return <EducationForm key={id} deleteForm={deleteForm} uuid={id}></EducationForm>;
+        {formsList.map((id, index) => {
+          return (
+            <>
+              {index > 0 && <hr></hr>}
+              <EducationForm
+                key={id}
+                deleteForm={deleteForm}
+                uuid={id}
+              ></EducationForm>
+            </>
+          );
         })}
       </ul>
-      <button onClick={() => addForm()} type="button" className="add-form-button">
+      <button
+        onClick={() => addForm()}
+        type="button"
+        className="add-form-button"
+      >
         +
       </button>
     </section>
@@ -47,7 +60,7 @@ function WorkSection() {
   }
 
   function deleteForm(id) {
-    setFormsList(formsList.filter(i => id !== i));
+    setFormsList(formsList.filter((i) => id !== i));
   }
 
   return (
@@ -55,10 +68,16 @@ function WorkSection() {
       <h1>{"Work Experience"}</h1>
       <ul>
         {formsList.map((id) => {
-          return <WorkForm key={id} deleteForm={deleteForm} uuid={id}></WorkForm>;
+          return (
+            <WorkForm key={id} deleteForm={deleteForm} uuid={id}></WorkForm>
+          );
         })}
       </ul>
-      <button onClick={() => addForm()} type="button" className="add-form-button">
+      <button
+        onClick={() => addForm()}
+        type="button"
+        className="add-form-button"
+      >
         +
       </button>
     </section>
