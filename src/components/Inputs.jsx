@@ -93,6 +93,7 @@ function TextAreaInput({ name, isEditing }) {
             className="form-textarea"
             id={id}
             value={text}
+            name="mainResponsibilities"
             onChange={(e) => setText(e.target.value)}
             required
           ></textarea>
