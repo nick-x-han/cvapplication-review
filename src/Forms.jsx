@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { FormField, TextAreaInput, DateInput } from "./Inputs"
-import "./Forms.css"
+import { FormField, TextAreaInput, DateInput } from "./Inputs";
+import "./Forms.css";
 
 function validateForm(form) {
   const inputs = form.querySelectorAll("input, textarea, select");
@@ -43,7 +43,7 @@ function GeneralForm() {
         type="tel"
         isEditing={isEditing}
       ></FormField>
-      <button type="submit">{isEditing ? "Submit" : "Edit"}</button>
+      <button type="submit" className="submit-button">{isEditing ? "Submit" : "Edit"}</button>
     </form>
   );
 }
@@ -77,8 +77,12 @@ function EducationForm({ deleteForm, uuid }) {
       ></FormField>
       <DateInput isEditing={isEditing}></DateInput>
 
-      <button type="submit">{isEditing ? "Submit" : "Edit"}</button>
-      <button onClick={() => deleteForm(uuid)} type="button">
+      <button type="submit" className="submit-button">{isEditing ? "Submit" : "Edit"}</button>
+      <button
+        onClick={() => deleteForm(uuid)}
+        type="button"
+        className="delete-button"
+      >
         Delete
       </button>
     </form>
@@ -119,12 +123,16 @@ function WorkForm({ deleteForm, uuid }) {
       ></TextAreaInput>
       <DateInput isEditing={isEditing}></DateInput>
 
-      <button type="submit">{isEditing ? "Submit" : "Edit"}</button>
-      <button onClick={() => deleteForm(uuid)} type="button">
+      <button type="submit" className="submit-button">{isEditing ? "Submit" : "Edit"}</button>
+      <button
+        onClick={() => deleteForm(uuid)}
+        type="button"
+        className="delete-button"
+      >
         Delete
       </button>
     </form>
   );
 }
 
-export { GeneralForm, EducationForm, WorkForm }
+export { GeneralForm, EducationForm, WorkForm };

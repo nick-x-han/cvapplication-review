@@ -31,7 +31,7 @@ function EducationSection() {
           return <EducationForm key={id} deleteForm={deleteForm} uuid={id}></EducationForm>;
         })}
       </ul>
-      <button onClick={() => addForm()} type="button">
+      <button onClick={() => addForm()} type="button" className="add-form-button">
         +
       </button>
     </section>
@@ -58,7 +58,7 @@ function WorkSection() {
           return <WorkForm key={id} deleteForm={deleteForm} uuid={id}></WorkForm>;
         })}
       </ul>
-      <button onClick={() => addForm()} type="button">
+      <button onClick={() => addForm()} type="button" className="add-form-button">
         +
       </button>
     </section>
