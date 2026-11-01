@@ -4,13 +4,6 @@
   grid-auto-columns: 150px;
 }
 
-.checkboxSide {
-  position: absolute;
-  right: 0px;
-  display: flex;
-  width: max-content;
-}
-
 .field {
   display: grid;
   grid-template-columns: 200px 300px;
@@ -20,6 +13,14 @@
   & > label {
     text-align: right;
   }
+}
+
+.checkbox {
+  display: flex;
+  width: max-content;
+  align-items: center;
+  justify-content: center;
+
 }
 
 .field-value {
@@ -32,8 +33,4 @@
       font-style: italic;
     }
   }
-}
-
-.date-input {
-  position: relative;
 }

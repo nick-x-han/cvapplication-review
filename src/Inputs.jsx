@@ -9,21 +9,6 @@ function DateInput({ isEditing }) {
   const dateUntilId = useId();
   const checkboxId = useId();
   const now = new Date().toLocaleDateString("en-CA");
-  const dateUntilHTML = (
-    <div className="field">
-      <label htmlFor={dateUntilId}>Date Until </label>
-      <input
-        type="date"
-        id={dateUntilId}
-        name="dateUntil"
-        value={untilDate}
-        onChange={onSetUntilNowDate}
-        min={fromDate}
-        max={now}
-        required
-      />
-    </div>
-  );
 
   function onToggleUntilNow() {
     setIsUntilNow(!isUntilNow);
@@ -40,41 +25,53 @@ function DateInput({ isEditing }) {
   if (isEditing) {
     return (
       <>
-        <div className="date-input">
-          <div className="field">
-            <label htmlFor={dateFromId}>Date From </label>
-            <input
-              type="date"
-              id={dateFromId}
-              name="dateFrom"
-              value={fromDate}
-              onChange={onSetFromDate}
-              max={now}
-              required
-            />
-          </div>
-          <div className="checkboxSide">
-            <label htmlFor={checkboxId}>Until Now?</label>
-            <input
-              type="checkbox"
-              id={checkboxId}
-              name="untilNow"
-              onChange={onToggleUntilNow}
-              checked={isUntilNow}
-            />
-          </div>
+        <div className="field">
+          <label htmlFor={dateFromId}>Date From </label>
+          <input
+            type="date"
+            id={dateFromId}
+            name="dateFrom"
+            value={fromDate}
+            onChange={onSetFromDate}
+            max={now}
+            required
+          />
         </div>
-        {!isUntilNow && dateUntilHTML}
+
+        <div className="field">
+          <label htmlFor={dateUntilId}>Date Until </label>
+          <input
+            type="date"
+            id={dateUntilId}
+            name="dateUntil"
+            value={isUntilNow ? now : untilDate}
+            onChange={onSetUntilNowDate}
+            min={fromDate}
+            max={now}
+            disabled={isUntilNow ? true : false}
+            required
+          />
+        </div>
+
+        <div className="checkbox">
+          <label htmlFor={checkboxId}>Until Now?</label>
+          <input
+            type="checkbox"
+            id={checkboxId}
+            name="untilNow"
+            onChange={onToggleUntilNow}
+            checked={isUntilNow}
+          />
+        </div>
       </>
     );
-  }
-  else {
+  } else {
     return (
       <>
-      <p>Date From: {fromDate}</p>
-      <p>Date Until: {isUntilNow ? "Present" : untilDate }</p>
+        <p>Date From: {fromDate}</p>
+        <p>Date Until: {isUntilNow}</p>
       </>
-    )
+    );
   }
 }
 
