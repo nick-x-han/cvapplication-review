@@ -39,6 +39,7 @@ function GeneralForm({ onSubmit, uuid }) {
         }
         setIsEditing(!isEditing);
       }}
+      data-editing={isEditing}
     >
       <FormField name="Name" type="text" isEditing={isEditing}></FormField>
       <FormField name="Email" type="email" isEditing={isEditing}></FormField>
@@ -73,6 +74,7 @@ function EducationForm({ deleteForm, uuid, onSubmit }) {
         }
         setIsEditing(!isEditing);
       }}
+      data-editing={isEditing}
     >
       <FormField
         name="School Name"
@@ -122,6 +124,7 @@ function WorkForm({ deleteForm, uuid, onSubmit }) {
         }
         setIsEditing(!isEditing);
       }}
+      data-editing={isEditing}
     >
       <FormField
         name="Company Name"

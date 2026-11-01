@@ -13,7 +13,7 @@ function GeneralSection({ onSubmit }) {
 }
 
 function EducationSection({ onSubmit }) {
-  const [formsList, setFormsList] = useState([crypto.randomUUID()]);
+  const [formsList, setFormsList] = useState(() => [crypto.randomUUID()]);
 
   function addForm() {
     let formId = crypto.randomUUID();
@@ -53,7 +53,7 @@ function EducationSection({ onSubmit }) {
 }
 
 function WorkSection({ onSubmit }) {
-  const [formsList, setFormsList] = useState([crypto.randomUUID()]);
+  const [formsList, setFormsList] = useState(() => [crypto.randomUUID()]);
 
   function addForm() {
     let formId = crypto.randomUUID();

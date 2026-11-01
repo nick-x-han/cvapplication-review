@@ -17,11 +17,22 @@ function App() {
     }));
   }
 
+  function validateForms() {
+    let forms = document.querySelectorAll("form[data-editing]");
+     forms = Array.from(forms);
+    return !forms.some((form) => (form.dataset["editing"] === "true"));
+  }
+
   function onPublish() {
-    console.log(data);
     let popover = document.querySelector("#mypopover");
-    popover.togglePopover();
-    setTimeout(() => popover.togglePopover(), 3000);
+    if (validateForms()) {
+      console.log(data);
+      popover.textContent = "Data logged";
+    } else {
+      popover.textContent = "All forms must be submitted";
+    }
+    popover.showPopover();
+    setTimeout(() => popover.hidePopover(), 3000);
   }
 
   return (
